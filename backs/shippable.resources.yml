@@ -23,3 +23,103 @@ resources:
     pointer:
       sourceName: chetantarale/sample-script
       branch: master
+
+  - name: dv-image
+    type: image
+    integration: dockerhub
+    pointer:
+      sourceName: "library/nginx"
+    seed:
+      versionName: latest
+
+  - name: dv-opts
+    type: dockerOptions
+    version:
+      memory: 64
+      cpuShares: 256
+      portMappings:
+        - "80:80"
+
+  - name: dv-params
+    type: params
+    version:
+      params:
+        MONGO_API_URL: "localhost:28017"
+    flags:
+      - dv
+
+  - name: box-image
+    type: image
+    integration: dockerhub
+    pointer:
+      sourceName: "library/busybox"
+    seed:
+      versionName: "master.35"
+
+  - name: box-params
+    type: params
+    version:
+      params:
+        DB_HOST: "ds015700.mlab.com"
+        DB_NAME: "ayeaye"
+        DB_PORT: "15700"
+        DB_USERNAME: "aye0aye"
+        DB_PASSWORD: "aye0aye"
+        ENVIRONMENT: "test-aws"
+    flags:
+      - box
+
+  - name: box-opts
+    type: dockerOptions
+    version:
+      memory: 64
+      cpuShares: 512
+
+  - name: env-test
+    type: cluster
+    integration: cls
+    pointer:
+      sourceName : "test-aws" #name of the cluster we are deploying
+      region: "us-east-1"
+
+  - name: box-scaler
+    type: replicas
+    version:
+      count: 1
+    flags:
+      - replicas
+
+
+  - name: version-resource
+    type: version
+    seed:
+      versionName: "0.0.1-beta"
+
+  - name: box-tripub-opts
+    type: dockerOptions
+    version:
+      memory: 128
+      #Triton has standard values for memory 128,512 etc.
+      #If non standard values is given in the memory, it chooses the closest
+      #standard memory value. Triton also uses this value to choose the plan
+      #and cpu-shares
+      publishAllPorts : true
+      #publishAllPorts assigns a public ip to the container and gives endpoint
+      #for accessing the exposed ports.
+    flags:
+      - tripub
+
+  # This time resource posts new versions for it, every 2 minutes
+  - name: nightly
+    type: time
+    seed:
+      interval: "*/2 * * * *"
+    flags:
+      - nightly
+
+  - name: slack
+    type: notification
+    integration: slack
+    pointer:
+      recipients:
+        - "#slackchannel"
