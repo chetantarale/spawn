@@ -25,7 +25,7 @@ jobs:
     type: runSh
     steps:
       - IN: sample-script-dup
-      - IN: runImage
+      - IN: runImageIN
       - TASK:
         - script: sudo apt-get install tree
         - pwd
