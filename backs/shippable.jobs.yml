@@ -4,6 +4,7 @@ jobs:
     steps:
       - IN: runImageIN
       - OUT: runImageOUT
+      - OUT: runImageIN
       - TASK:
         - script: sudo apt-get install tree
         - pwd
