@@ -17,7 +17,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: sample-scrip
+  - name: sample-script
     type: gitRepo
     integration: github
     pointer:
