@@ -10,6 +10,9 @@ jobs:
     on_success:
       - script: echo 'This block executes after TASK section executes successfully'
       - NOTIFY: slack
+    on_failure:
+      - script: echo 'This block executes after TASK section fails'
+      - NOTIFY: slack
       
   - name: dv-man
     type: manifest
