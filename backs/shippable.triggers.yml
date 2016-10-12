@@ -1,6 +1,0 @@
-triggers:
-  - name: triggertest1
-    type: trigger
-    version:
-      counter: 184
-
