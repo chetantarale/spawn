@@ -32,3 +32,10 @@ jobs:
         - script: tree -F IN
         - script: IN/sample-script-dup/gitRepo/echo.sh
         
+
+  - name: box-test
+    type: deploy
+    steps:
+      - IN: box-man
+      - TASK: managed
+        deployMethod: upgrade
