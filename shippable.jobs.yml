@@ -24,7 +24,7 @@ jobs:
   - name: spaceBar2
     type: runSh
     steps:
-      - IN: sample-script-dup
+      - IN: sample-script
       - IN: runImageIN
       - TASK:
         - script: sudo apt-get install tree
