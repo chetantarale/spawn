@@ -1,0 +1,40 @@
+jobs:
+  - name: spaceBar1
+    type: runSh
+    steps:
+      - IN: runImageIN
+      - OUT: runImageOUT
+      - TASK:
+        - script: sudo apt-get install tree
+        - pwd
+
+  - name: dv-man
+    type: manifest
+    steps:
+      - IN: runImageIN
+        pull: false
+      - TASK: managed
+    on_success:
+      - script: echo 'this is on_success step of dv-man of type manifest'
+    on_failure:
+      - script: echo 'this is on_failure step of dv-man of type manifest'
+    flags:
+      - run
+
+  - name: spaceBar2
+    type: runSh
+    steps:
+      - IN: sample-script
+      - IN: runImageIN
+      - TASK:
+        - script: sudo apt-get install tree
+        - pwd
+        - script: tree -F IN
+        - script: IN/sample-script-dup/gitRepo/echo.sh
+ 
+  - name: box-test
+    type: deploy
+    steps:
+      - IN: dv-man
+      - TASK: managed
+        deployMethod: upgrade
