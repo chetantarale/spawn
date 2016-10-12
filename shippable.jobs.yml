@@ -35,6 +35,6 @@ jobs:
   - name: box-test
     type: deploy
     steps:
-      - IN: box-man
+      - IN: dv-man
       - TASK: managed
         deployMethod: upgrade
