@@ -17,9 +17,9 @@ resources:
     seed:
       versionName: latest
 
-  # - name: sample-script-dup
-  #   type: gitRepo
-  #   integration: github
-  #   pointer:
-  #     sourceName: chetantarale/sample-script
-  #     branch: master
+  - name: sample-scrip
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: chetantarale/sample-script
+      branch: master
