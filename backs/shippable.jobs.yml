@@ -52,7 +52,6 @@ jobs:
         applyTo:
           - dv-image
       - TASK: managed
-      - IN: trigger-dv-man
     on_success:
       - script: echo 'this is on_success step of dv-man of type manifest'
     on_failure:
@@ -71,7 +70,6 @@ jobs:
         applyTo:
           - dv-image
       - TASK: managed
-      - IN: trigger-dv-man
 
   - name: dv-man-versionNumber
     type: manifest
@@ -84,7 +82,6 @@ jobs:
         applyTo:
           - dv-image
       - TASK: managed
-      - IN: trigger-dv-man
 
   - name: box-man
     type: manifest
